@@ -1,0 +1,249 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Sidomeny ---------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: var(--topbar-height);
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sidebar-logo img { width: 100%; height: 100%; object-fit: cover; }
+.sidebar-brand-name {
+  font-size: 14.5px;
+  font-weight: 660;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sidebar-brand-sub { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; text-transform: uppercase; }
+
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 12px; }
+.sidebar-section {
+  padding: 14px 10px 6px;
+  font-size: 10.5px;
+  font-weight: 640;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  margin-bottom: 2px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 550;
+  text-align: left;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-item:hover { background: var(--surface-2); color: var(--text); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 620; }
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+}
+.nav-item svg { flex-shrink: 0; }
+.nav-count {
+  margin-left: auto;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--elevated);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 640;
+  font-variant-numeric: tabular-nums;
+}
+.nav-item.active .nav-count { background: rgba(255, 138, 31, 0.2); color: var(--accent); }
+.nav-count.alert { background: var(--danger-soft); color: var(--danger); }
+
+.sidebar-foot {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.offline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--success-soft);
+  color: var(--success);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* ---------- Huvudyta ---------- */
+.main { display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: var(--topbar-height);
+  padding: 0 26px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.topbar-title { font-size: 19px; font-weight: 650; letter-spacing: -0.02em; }
+.topbar-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 1px; }
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+.page {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 26px 40px;
+  animation: fade-in 160ms ease-out;
+}
+.page-narrow { max-width: 1180px; }
+
+.grid { display: grid; gap: 16px; }
+.grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-main { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+
+@media (max-width: 1400px) {
+  .grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-main { grid-template-columns: minmax(0, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  :root { --sidebar-width: 76px; }
+  .sidebar-brand-text, .sidebar-section, .nav-item span.nav-label { display: none; }
+  .nav-item { justify-content: center; }
+  .grid-5, .grid-4, .grid-3, .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.filter-bar .search { flex: 1 1 260px; min-width: 220px; }
+.filter-bar .select { width: auto; min-width: 132px; flex: 0 0 auto; }
+
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.form-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.form-span-2 { grid-column: span 2; }
+.form-span-3 { grid-column: span 3; }
+
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* ---------- Verkstadens banner ---------- */
+.workshop-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  /* Samma färg som logotypens egen bakgrund — inget synligt ramverk runt bilden. */
+  background: var(--brand-ink);
+  border-bottom: 1px solid #1d1930;
+  flex-shrink: 0;
+}
+.workshop-cover-logo {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  /* Behåller originalproportionerna — logotypen beskärs aldrig. */
+  object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+  .workshop-cover { padding: 8px 20px; }
+  .workshop-cover-logo { max-width: 480px; }
+}
+
+/* Sidomenyns logotyp visas i full bredd i stället för som liten avatarruta. */
+.sidebar-brand {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 6px;
+  height: auto;
+  min-height: var(--topbar-height);
+  padding: 14px 16px;
+  background: var(--brand-ink);
+  border-bottom-color: #1d1930;
+}
+.sidebar-brand-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 44px;
+  object-fit: contain;
+  object-position: left center;
+}
+.sidebar-brand-sub {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .workshop-cover { display: none; }
+  .sidebar-brand { padding: 10px 8px; }
+  .sidebar-brand-logo { max-height: 30px; object-position: center; }
+  .sidebar-brand-sub { display: none; }
+}

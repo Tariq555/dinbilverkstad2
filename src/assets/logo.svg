@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Din Bilverkstad">
+  <rect width="64" height="64" rx="16" fill="#12161C"/>
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#FF8A1F" stroke-width="8"/>
+  <circle cx="32" cy="32" r="8.5" fill="#0B0D10"/>
+  <g stroke="#39424E" stroke-width="3" stroke-linecap="round">
+    <path d="M32 23.5V17"/>
+    <path d="M40.2 29.3 46.4 27.3"/>
+    <path d="M37.1 39.1 40.9 44.4"/>
+    <path d="M26.9 39.1 23.1 44.4"/>
+    <path d="M23.8 29.3 17.6 27.3"/>
+  </g>
+</svg>

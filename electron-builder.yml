@@ -1,0 +1,46 @@
+appId: se.dinbilverkstad.dacklager
+productName: Din Bilverkstad
+copyright: Copyright © 2026 Din Bilverkstad
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+
+asar: true
+compression: normal
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: TireShop-Setup.${ext}
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Din Bilverkstad
+  installerLanguages:
+    - sv_SE
+    - en_US
+  language: 1053
+  deleteAppDataOnUninstall: false
+
+mac:
+  # macOS-bygget är en utvecklingsbekvämlighet och signeras inte.
+  # Windows är målplattformen för leverans.
+  identity: null
+  target:
+    - dmg
+  category: public.app-category.business
+  artifactName: DinBilverkstad-${version}.${ext}
